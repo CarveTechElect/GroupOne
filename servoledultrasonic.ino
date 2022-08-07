@@ -17,21 +17,17 @@ void setup() {
 }
 
 void loop() {
-  ultra();
-  Servo1.write(0);
-  digitalWrite(4, LOW);
-  if(distance <= 50){
-  Servo1.write(180);
-  digitalWrite(4, HIGH);
+  Servo1.write(0); // sets rotation to 0 degree
+  digitalWrite(4, LOW); // sets LED pin to stay OFF
+  if(distance <= 50){ // if detect range of less than 50 cm
+  Servo1.write(180); // turns servo 180 degree
+  digitalWrite(4, HIGH); // sets LED pin to go ON
   }
-}
- 
-void ultra(){
-  digitalWrite(2, HIGH); // Trigger Pin
-  delayMicroseconds(2);
-  digitalWrite(3, HIGH); // Echo Pin
+  digitalWrite(2, HIGH); // Trigger Pin set to detect movement
+  delayMicroseconds(2); // delays for 2 microseconds
+  digitalWrite(3, HIGH); // Echo Pin creates a response
   delayMicroseconds(5);
-  digitalWrite(2, LOW); // Trigger Pin
+  digitalWrite(2, LOW); // Trigger Pin trigger pin goes back to idle position
   duration = pulseIn(3, HIGH); // Echo Pin
   distance = duration*0.034/2;
-  }
+ }
